@@ -1,0 +1,2 @@
+- When users choode "Cancel", the system will determine that it is a "No" option
+- I have change it in the source code
