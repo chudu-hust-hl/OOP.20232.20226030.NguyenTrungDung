@@ -32,18 +32,26 @@ public class numsCalculation {
 		num1 = Double.parseDouble(strNum1);
 		num2 = Double.parseDouble(strNum2);
 		
-		
-		JOptionPane.showMessageDialog(null, sum(num1, num2),
-				"Show the sum of two numbers", JOptionPane.INFORMATION_MESSAGE);
-		
-		JOptionPane.showMessageDialog(null, difference(num1, num2),
-				"Show the difference of two numbers", JOptionPane.INFORMATION_MESSAGE);
-
-		JOptionPane.showMessageDialog(null, product(num1, num2),
-				"Show the product of two numbers", JOptionPane.INFORMATION_MESSAGE);
-		
-		JOptionPane.showMessageDialog(null, quotient(num1, num2),
-				"Show the quotient of two numbers", JOptionPane.INFORMATION_MESSAGE);
+		String[] options = {"sum", "difference", "product", "quotient"};
+        String basic = (String) JOptionPane.showInputDialog(null, "Basic Calculator", "Which one", JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+        switch (basic) {
+        case "sum":
+        	JOptionPane.showMessageDialog(null, sum(num1, num2),
+    				"Show the sum of two numbers", JOptionPane.INFORMATION_MESSAGE);
+        case "difference":
+        	JOptionPane.showMessageDialog(null, difference(num1, num2),
+    				"Show the difference of two numbers", JOptionPane.INFORMATION_MESSAGE);
+            break;
+        case "product":
+        	JOptionPane.showMessageDialog(null, product(num1, num2),
+    				"Show the product of two numbers", JOptionPane.INFORMATION_MESSAGE);
+            break;
+        case "quotient":
+        	JOptionPane.showMessageDialog(null, quotient(num1, num2),
+    				"Show the quotient of two numbers", JOptionPane.INFORMATION_MESSAGE);
+            break;
+        }
+        System.exit(0);
 	}
 
 }
