@@ -19,29 +19,6 @@ public class Cart {
 		}
 		
 		
-		public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
-			if (qtyOrdered+dvdList.length>= MAX_NUMBERS_ORDERED) {
-				 JOptionPane.showMessageDialog(null, "The cart is full!", "Cart update", JOptionPane.ERROR_MESSAGE);
-			}
-			else {
-				for(int j=0; j<dvdList.length;j++) {
-					addDigitalVideoDisc(dvdList[j]);
-				}
-				JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		
-		public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-			if (qtyOrdered>= MAX_NUMBERS_ORDERED-1) {
-				 JOptionPane.showMessageDialog(null, "The cart is full!", "Cart update", JOptionPane.ERROR_MESSAGE);
-			}
-			else {
-				addDigitalVideoDisc(dvd1);
-				addDigitalVideoDisc(dvd2);
-				JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
-		
 		 public boolean removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		        boolean discFound = false;
 		        int indexToRemove = -1;
