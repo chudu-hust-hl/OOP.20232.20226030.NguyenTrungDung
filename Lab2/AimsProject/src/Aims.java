@@ -1,4 +1,3 @@
-
 public class Aims {
 	public static void main(String[] args) {
 		Cart anOrder = new Cart();
@@ -15,7 +14,7 @@ public class Aims {
 		
         for (int i = 0; i < anOrder.qtyOrdered; i++) {
             DigitalVideoDisc dvd = anOrder.itemsOrdered[i];
-            System.out.printf("%-6d %-30s $%-10.2f\n", i+1, dvd.getTitle(), dvd.getCost());
+            System.out.printf("%-6d %-30s $%-10.2f\n", dvd.getId(), dvd.getTitle(), dvd.getCost());
         }
         System.out.printf("%-37s $%-10.2f\n", "Total Cost", anOrder.totalCost());
         
