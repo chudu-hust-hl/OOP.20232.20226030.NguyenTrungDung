@@ -1,4 +1,5 @@
 package hust.soict.ict.aims.cart;
+
 import javax.swing.JOptionPane;
 
 import hust.soict.ict.aims.disc.DigitalVideoDisc;
@@ -16,7 +17,7 @@ public class Cart {
 		else {
 			itemsOrdered[qtyOrdered]=disc;
 			qtyOrdered ++;
-			JOptionPane.showMessageDialog(null, "The disc has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
+			//JOptionPane.showMessageDialog(null, "The disc has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
@@ -28,6 +29,7 @@ public class Cart {
 		else {
 			for(int j=0; j<dvdList.length;j++) {
 				addDigitalVideoDisc(dvdList[j]);
+				qtyOrdered ++;
 			}
 			JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -39,7 +41,9 @@ public class Cart {
 		}
 		else {
 			addDigitalVideoDisc(dvd1);
+			qtyOrdered ++;
 			addDigitalVideoDisc(dvd2);
+			qtyOrdered ++;
 			JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -82,4 +86,137 @@ public class Cart {
 
 	        return total;
 	    }
+	 
+	 public void print() {
+		 if (qtyOrdered==0) {
+	            System.out.println("The cart is empty.");
+	        }
+		 else {
+			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("Ordered items:");
+			 for (int n=0;n < qtyOrdered; n++) {
+				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, itemsOrdered[n].getTitle(), itemsOrdered[n].getCategory(), itemsOrdered[n].getDirector(), itemsOrdered[n].getLength(), itemsOrdered[n].getCost());		 
+			 }
+			 System.out.printf("Total cost: %.2f \n", this.totalCost());
+			 System.out.println("**********************************************************************************************\n");
+		 }
+	 }
+	 
+	 
+	public void searchByTitle(String title) {
+	    if (qtyOrdered == 0) {
+            System.out.println("The cart is empty.");
+	    }
+
+	    title = title.toLowerCase(); // Convert the search title to lowercase for case-insensitive comparison
+	    DigitalVideoDisc[] matchingDVDs = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+	    int count = 0;
+
+	    for (int i = 0; i < qtyOrdered; i++) {
+	        String dvdTitle = itemsOrdered[i].getTitle().toLowerCase(); // Convert DVD title to lowercase
+	        if (dvdTitle.contains(title)) { // Check if the DVD title contains the search string
+	            matchingDVDs[count] = itemsOrdered[i]; // Add the matching DVD to the array
+	            count++;
+	        }
+	    }
+
+	    if (count == 0) {
+	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
+	    }
+	    else {
+			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("Matched items:");
+			 for (int n=0;n < count; n++) {
+				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+			 }
+			 System.out.println("**********************************************************************************************\n");
+		 }
+	}
+	
+	public void searchByCategory(String category){
+		if (qtyOrdered == 0) {
+            System.out.println("The cart is empty.");
+	    }
+		
+		category=category.toLowerCase();
+		DigitalVideoDisc[] matchingDVDs = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+		int count = 0;
+
+	    for (int i = 0; i < qtyOrdered; i++) {
+	        if (itemsOrdered[i].getCategory().equalsIgnoreCase(category)) { // Check if the DVD title contains the search string
+	            matchingDVDs[count] = itemsOrdered[i]; // Add the matching DVD to the array
+	            count++;
+	        }
+	    }
+	    
+	    if (count == 0) {
+	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
+	    }
+	    else {
+			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("Matched items:");
+			 for (int n=0;n < count; n++) {
+				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+			 }
+			 System.out.println("**********************************************************************************************\n");
+		 }
+	    	
+	}
+	
+	
+	public void searchByPrice(float maxPrice) {
+		if (qtyOrdered == 0) {
+            System.out.println("The cart is empty.");
+	    }
+		
+		int count = 0;
+	    DigitalVideoDisc[] matchingDVDs = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+
+	    for (int i = 0; i < qtyOrdered; i++) {
+	        if (itemsOrdered[i].getCost() <= maxPrice) {
+	            matchingDVDs[count++] = itemsOrdered[i];
+	        }
+	    }
+	    
+	    if (count == 0) {
+	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
+	    }
+	    else {
+			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("Matched items:");
+			 for (int n=0;n < count; n++) {
+				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+			 }
+			 System.out.println("**********************************************************************************************\n");
+		 }
+	}
+	
+	public void searchByPrice(float minPrice, float maxPrice) {
+		if (qtyOrdered == 0) {
+            System.out.println("The cart is empty.");
+	    }
+		
+		int count = 0;
+	    DigitalVideoDisc[] matchingDVDs = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+
+	    for (int i = 0; i < qtyOrdered; i++) {
+	        float dvdPrice = itemsOrdered[i].getCost();
+	        if (dvdPrice >= minPrice && dvdPrice <= maxPrice) {
+	            matchingDVDs[count++] = itemsOrdered[i];
+	        }
+	    }
+	    
+	    if (count == 0) {
+	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
+	    }
+	    else {
+			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("Matched items:");
+			 for (int n=0;n < count; n++) {
+				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+			 }
+			 System.out.println("**********************************************************************************************\n");
+		 }
+	}
+ 
 }
