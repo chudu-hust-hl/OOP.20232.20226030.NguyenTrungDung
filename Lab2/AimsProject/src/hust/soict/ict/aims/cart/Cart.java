@@ -29,7 +29,6 @@ public class Cart {
 		else {
 			for(int j=0; j<dvdList.length;j++) {
 				addDigitalVideoDisc(dvdList[j]);
-				qtyOrdered ++;
 			}
 			JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
 		}
@@ -41,9 +40,7 @@ public class Cart {
 		}
 		else {
 			addDigitalVideoDisc(dvd1);
-			qtyOrdered ++;
 			addDigitalVideoDisc(dvd2);
-			qtyOrdered ++;
 			JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
@@ -74,7 +71,35 @@ public class Cart {
 	        qtyOrdered--;
 	        
 	        return true; 
-	    }
+	 }
+	 
+	 public boolean removeDigitalVideoDisc(String title) {
+	        boolean discFound = false;
+	        int indexToRemove = -1;
+
+	        for (int i = 0; i < qtyOrdered; i++) {
+	            if (itemsOrdered[i].getTitle() == title) {
+	                discFound = true;
+	                indexToRemove = i;
+	                JOptionPane.showMessageDialog(null, "The disc is removed", "Cart update", JOptionPane.INFORMATION_MESSAGE);
+	                break;
+	            }
+	        }
+
+	        if (!discFound) {
+	            JOptionPane.showMessageDialog(null, "Disc not found in the cart!", "Cart update", JOptionPane.ERROR_MESSAGE);
+	            return false;
+	        }
+
+
+	        for (int i = indexToRemove; i < qtyOrdered - 1; i++) {
+	            itemsOrdered[i] = itemsOrdered[i + 1];
+	        }
+	        itemsOrdered[qtyOrdered - 1] = null; 
+	        qtyOrdered--;
+	        
+	        return true; 
+	 }
 	
 	 public float totalCost() {
 	        float total = 0.0f;
@@ -92,13 +117,13 @@ public class Cart {
 	            System.out.println("The cart is empty.");
 	        }
 		 else {
-			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("************************************************CART************************************************");
 			 System.out.println("Ordered items:");
 			 for (int n=0;n < qtyOrdered; n++) {
-				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, itemsOrdered[n].getTitle(), itemsOrdered[n].getCategory(), itemsOrdered[n].getDirector(), itemsOrdered[n].getLength(), itemsOrdered[n].getCost());		 
+				 System.out.printf("%2d. DVD - %-30s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, itemsOrdered[n].getTitle(), itemsOrdered[n].getCategory(), itemsOrdered[n].getDirector(), itemsOrdered[n].getLength(), itemsOrdered[n].getCost());		 
 			 }
 			 System.out.printf("Total cost: %.2f \n", this.totalCost());
-			 System.out.println("**********************************************************************************************\n");
+			 System.out.println("****************************************************************************************************\n");
 		 }
 	 }
 	 
@@ -124,12 +149,12 @@ public class Cart {
 	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
 	    }
 	    else {
-			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("************************************************CART************************************************");
 			 System.out.println("Matched items:");
 			 for (int n=0;n < count; n++) {
-				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+				 System.out.printf("%d. DVD - %-30s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
 			 }
-			 System.out.println("**********************************************************************************************\n");
+			 System.out.println("****************************************************************************************************\n");
 		 }
 	}
 	
@@ -153,12 +178,12 @@ public class Cart {
 	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
 	    }
 	    else {
-			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("************************************************CART************************************************");
 			 System.out.println("Matched items:");
 			 for (int n=0;n < count; n++) {
-				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+				 System.out.printf("%d. DVD - %-30s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
 			 }
-			 System.out.println("**********************************************************************************************\n");
+			 System.out.println("****************************************************************************************************\n");
 		 }
 	    	
 	}
@@ -182,12 +207,12 @@ public class Cart {
 	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
 	    }
 	    else {
-			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("************************************************CART************************************************");
 			 System.out.println("Matched items:");
 			 for (int n=0;n < count; n++) {
-				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+				 System.out.printf("%d. DVD - %-30s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
 			 }
-			 System.out.println("**********************************************************************************************\n");
+			 System.out.println("****************************************************************************************************\n");
 		 }
 	}
 	
@@ -210,12 +235,12 @@ public class Cart {
 	    	JOptionPane.showMessageDialog(null, "There is no disc match!", "Serching DVDs", JOptionPane.ERROR_MESSAGE);
 	    }
 	    else {
-			 System.out.println("*********************************************CART*********************************************");
+			 System.out.println("************************************************CART************************************************");
 			 System.out.println("Matched items:");
 			 for (int n=0;n < count; n++) {
-				 System.out.printf("%d. DVD - %-20s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
+				 System.out.printf("%d. DVD - %-30s - %-20s - %-15s - %-5d : %.2f$ \n",n+1, matchingDVDs[n].getTitle(), matchingDVDs[n].getCategory(), matchingDVDs[n].getDirector(), matchingDVDs[n].getLength(), matchingDVDs[n].getCost());		 
 			 }
-			 System.out.println("**********************************************************************************************\n");
+			 System.out.println("****************************************************************************************************\n");
 		 }
 	}
  

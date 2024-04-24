@@ -17,6 +17,7 @@ public class Aims {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Aladin", "Animation", 18.99f);
 		anOrder.addDigitalVideoDisc(dvd3);
 		
+		anOrder.removeDigitalVideoDisc(dvd2);
 		
         for (int i = 0; i < anOrder.qtyOrdered; i++) {
             DigitalVideoDisc dvd = anOrder.itemsOrdered[i];
@@ -24,6 +25,6 @@ public class Aims {
         }
         System.out.printf("%-37s $%-10.2f\n", "Total Cost", anOrder.totalCost());
         
-        anOrder.removeDigitalVideoDisc(dvd2);
+        //anOrder.removeDigitalVideoDisc(dvd2);
 	}
 }
