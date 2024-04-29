@@ -1,6 +1,6 @@
 package hust.soict.ict.test.disc;
 
-import hust.soict.ict.aims.disc.DigitalVideoDisc;
+import hust.soict.ict.aims.media.DigitalVideoDisc;
 
 public class TestingParameter {
 

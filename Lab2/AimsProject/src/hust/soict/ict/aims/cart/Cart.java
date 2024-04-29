@@ -2,7 +2,7 @@ package hust.soict.ict.aims.cart;
 
 import javax.swing.JOptionPane;
 
-import hust.soict.ict.aims.disc.DigitalVideoDisc;
+import hust.soict.ict.aims.media.DigitalVideoDisc;
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;

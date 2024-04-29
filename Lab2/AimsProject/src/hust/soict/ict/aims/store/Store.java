@@ -2,7 +2,7 @@ package hust.soict.ict.aims.store;
 
 import javax.swing.JOptionPane;
 
-import hust.soict.ict.aims.disc.DigitalVideoDisc;
+import hust.soict.ict.aims.media.DigitalVideoDisc;
 
 public class Store {
     private static final int MAX_ITEMS_IN_STORE = 100;

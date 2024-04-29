@@ -2,60 +2,26 @@ package hust.soict.ict.aims.media;
 
 import java.util.ArrayList;
 
-import javax.swing.JOptionPane;
-
-public class Book extends Object {
-    private int id;
-    private String title;
-    private String category;
-    private float cost;
+public class Book extends Media {
     private ArrayList<String> authors;
 
-    // Constructors
-    public Book() {
-        // Default constructor
+    public Book(String title) {
+        super();
+        this.title = title;
+        authors = new ArrayList<>();
     }
 
-    public Book(int id, String title, String category, float cost, ArrayList<String> authors) {
-        this.id = id;
-        this.title = title;
-        this.category = category;
-        this.cost = cost;
+    public Book(String title, String category, float cost) {
+        super(title, category, cost);
+        authors = new ArrayList<>();
+    }
+
+    public Book(String title, String category, ArrayList<String> authors, float cost) {
+        super(title, category, cost);
         this.authors = authors;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
-    public float getCost() {
-        return cost;
-    }
-
-    public void setCost(float cost) {
-        this.cost = cost;
-    }
-
+    // Getters and setters for authors
     public ArrayList<String> getAuthors() {
         return authors;
     }
@@ -63,24 +29,16 @@ public class Book extends Object {
     public void setAuthors(ArrayList<String> authors) {
         this.authors = authors;
     }
-    
+
+    // Method to add an author
     public void addAuthor(String authorName) {
         if (!authors.contains(authorName)) {
             authors.add(authorName);
         }
-        else {
-        	JOptionPane.showMessageDialog(null, "This author is exist", "Author", JOptionPane.ERROR_MESSAGE);
-        }
     }
 
-    // Method to remove an author from the list
+    // Method to remove an author
     public void removeAuthor(String authorName) {
-    	if (!authors.contains(authorName)) {
-    		JOptionPane.showMessageDialog(null, "This author is not exist", "Author", JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-        	authors.remove(authorName);
-        	
-        }
+        authors.remove(authorName);
     }
 }

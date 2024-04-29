@@ -2,7 +2,7 @@ package hust.soict.ict.aims.store;
 
 
 import hust.soict.ict.aims.cart.Cart;
-import hust.soict.ict.aims.disc.DigitalVideoDisc;
+import hust.soict.ict.aims.media.DigitalVideoDisc;
 
 public class Aims {
 	public static void main(String[] args) {
