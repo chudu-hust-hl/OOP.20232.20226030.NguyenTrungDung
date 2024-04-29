@@ -16,11 +16,10 @@ public class MediaTest {
         // Create a CompactDisc object
         CompactDisc cd = new CompactDisc("CD Title", "Category", "Director", tracks, 19.99f);
 
-        cd.print();
         
         System.out.println("CD Length: " + cd.getLength());
 
-        /*// Add a new track to the CD
+        // Add a new track to the CD
         Track newTrack = new Track("New Track", 200);
         cd.addTrack(newTrack);
 
@@ -36,6 +35,7 @@ public class MediaTest {
 
         // Print information about the CD after modifications
         System.out.println("Updated CD Length: " + cd.getLength());
-        cd.print();*/
+        cd.print();
+        cd.play();
     }
 }

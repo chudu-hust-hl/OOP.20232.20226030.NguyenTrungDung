@@ -8,6 +8,7 @@ public class Track {
         this.title = title;
         this.length = length;
     }
+    
 
 	public String getTitle() {
 		return title;
@@ -25,6 +26,9 @@ public class Track {
 		this.length = length;
 	}
 
-
+	public void play() {
+	    System.out.println("Playing track: " + this.getTitle());
+	    System.out.println("Track length: " + this.getLength());
+	}
 
 }
