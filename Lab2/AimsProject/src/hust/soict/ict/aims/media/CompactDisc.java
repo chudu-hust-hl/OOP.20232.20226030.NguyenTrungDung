@@ -41,7 +41,17 @@ public class CompactDisc extends Disc {
         }
         setLength(totalLength);
     }
+    
+    public void play() {
+        System.out.println("Playing CD: " + this.getTitle());
+        System.out.println("CD artist: " + this.getArtist());
+        System.out.println("CD length: " + this.getLength());
 
+        // Loop through each track and play it
+        for (Track track : tracks) {
+            track.play();
+        }
+    }
 
     
     public void addTrack(Track newTrack) {
