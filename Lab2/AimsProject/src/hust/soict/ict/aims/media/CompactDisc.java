@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class CompactDisc extends Disc {
     private String artist;
-    private ArrayList<Track> tracks;
+    public ArrayList<Track> tracks;
 
     public CompactDisc() {
         super();
@@ -14,11 +14,15 @@ public class CompactDisc extends Disc {
 
     public CompactDisc(String title, String category, String director, ArrayList<Track> tracks, float cost) {
         super(title, category, director, cost);
+        this.tracks = tracks;
+        setLengthFromTracks();
     }
 
     public CompactDisc(String title, String category, String director, ArrayList<Track> tracks, int length, float cost, String artist) {
         super(title, category, director, length, cost);
         this.artist = artist;
+        this.tracks = tracks;
+        setLengthFromTracks();
     }
 
     // Getter and setter for artist
@@ -30,12 +34,29 @@ public class CompactDisc extends Disc {
         this.artist = artist;
     }
     
+    public void setLengthFromTracks() {
+        int totalLength = 0;
+        for (Track track : tracks) {
+            totalLength += track.getLength();
+        }
+        setLength(totalLength);
+    }
+
+
+    
     public void addTrack(Track newTrack) {
     	if(tracks.contains(newTrack)) {
     		JOptionPane.showMessageDialog(null, "Track is already in the CD", "Duplicate Track", JOptionPane.ERROR_MESSAGE);
     	}
     	else {
     		tracks.add(newTrack);
+    		setLengthFromTracks();
+    	}
+    }
+    
+    public void addTrack(ArrayList<Track> tracksList) {
+    	for(Track track : tracksList) {
+    		addTrack(track);
     	}
     }
     
@@ -46,4 +67,18 @@ public class CompactDisc extends Disc {
             JOptionPane.showMessageDialog(null, "Track is not in the CD", "Track Not Found", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void print() {
+		 if (tracks.size()==0) {
+	        System.out.println("The cart is empty.");
+	     }
+		 else {
+			 System.out.println("**************************************CDs Track**************************************");
+			 System.out.println("Ordered items:");
+			 for (Track track : tracks) {
+				 System.out.printf("Track: %-35s - %-15s \n", track.getTitle(), track.getLength());		 
+			 }
+			 System.out.println("*************************************************************************************\n");
+		 }
+	 }
 }
