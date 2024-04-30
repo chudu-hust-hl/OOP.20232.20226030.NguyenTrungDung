@@ -1,117 +1,92 @@
 package hust.soict.ict.aims.store;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
+import hust.soict.ict.aims.media.Book;
+import hust.soict.ict.aims.media.CompactDisc;
 import hust.soict.ict.aims.media.DigitalVideoDisc;
+import hust.soict.ict.aims.media.Media;
+
 
 public class Store {
     private static final int MAX_ITEMS_IN_STORE = 100;
-    private DigitalVideoDisc[] itemsInStore = new DigitalVideoDisc[MAX_ITEMS_IN_STORE];
-    private int itemCount = 0;
+    private ArrayList<Media> itemsInStore = new ArrayList<>();
 
-    public void addDigitalVideoDisc(DigitalVideoDisc disc) {
-		if (itemCount >= MAX_ITEMS_IN_STORE) {
-			 JOptionPane.showMessageDialog(null, "The cart is full!", "Cart update", JOptionPane.ERROR_MESSAGE);
+    public void addMedia(Media media) {
+		if (itemsInStore.size() >= MAX_ITEMS_IN_STORE) {
+			 JOptionPane.showMessageDialog(null, "The store is full!", "Store update", JOptionPane.ERROR_MESSAGE);
 		}
 		else {
-			itemsInStore[itemCount]=disc;
-			itemCount ++;
-			//JOptionPane.showMessageDialog(null, "The disc has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
+			itemsInStore.add(media);
+			//JOptionPane.showMessageDialog(null, "The media has been added", "Store update", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
 	
-	public void addDigitalVideoDisc(DigitalVideoDisc[] dvdList) {
-		if (itemCount+dvdList.length>= MAX_ITEMS_IN_STORE) {
-			 JOptionPane.showMessageDialog(null, "The cart is full!", "Cart update", JOptionPane.ERROR_MESSAGE);
+	public void addMedia(Media[] mediaList) {
+		if (itemsInStore.size()+mediaList.length>= MAX_ITEMS_IN_STORE) {
+			 JOptionPane.showMessageDialog(null, "The store is full!", "Store update", JOptionPane.ERROR_MESSAGE);
 		}
 		else {
-			for(int j=0; j<dvdList.length;j++) {
-				addDigitalVideoDisc(dvdList[j]);
+			for(int j=0; j<mediaList.length;j++) {
+				addMedia(mediaList[j]);
 			}
-			JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "The media list has been added", "Store update", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	
-	public void addDigitalVideoDisc(DigitalVideoDisc dvd1, DigitalVideoDisc dvd2) {
-		if (itemCount>= MAX_ITEMS_IN_STORE-1) {
-			 JOptionPane.showMessageDialog(null, "The cart is full!", "Cart update", JOptionPane.ERROR_MESSAGE);
+	public void addMedia(Media media1, Media media2) {
+		if (itemsInStore.size()>= MAX_ITEMS_IN_STORE-1) {
+			 JOptionPane.showMessageDialog(null, "The store is full!", "Store update", JOptionPane.ERROR_MESSAGE);
 		}
 		else {
-			addDigitalVideoDisc(dvd1);
-			itemCount ++;
-			addDigitalVideoDisc(dvd2);
-			itemCount ++;
-			JOptionPane.showMessageDialog(null, "The disc list has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
+			addMedia(media1);
+			addMedia(media2);
+			JOptionPane.showMessageDialog(null, "The media list has been added", "Store update", JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 
-	public boolean removeDigitalVideoDisc(String title) {
-        boolean discFound = false;
-        int indexToRemove = -1;
-
-        for (int i = 0; i < itemCount; i++) {
-            if (itemsInStore[i].getTitle() == title) {
-                discFound = true;
-                indexToRemove = i;
-                JOptionPane.showMessageDialog(null, "The disc is removed", "Cart update", JOptionPane.INFORMATION_MESSAGE);
-                break;
-            }
-        }
-
-        if (!discFound) {
-            JOptionPane.showMessageDialog(null, "Disc not found in the cart!", "Cart update", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-
-        for (int i = indexToRemove; i < itemCount - 1; i++) {
-            itemsInStore[i] = itemsInStore[i + 1];
-        }
-        itemsInStore[itemCount - 1] = null; 
-        itemCount--;
-        
-        return true; 
-	}
-	
-	public boolean removeDigitalVideoDisc(DigitalVideoDisc disc) {
-        boolean discFound = false;
-        int indexToRemove = -1;
-
-        for (int i = 0; i < itemCount; i++) {
-            if (itemsInStore[i] == disc) {
-                discFound = true;
-                indexToRemove = i;
-                JOptionPane.showMessageDialog(null, "The disc is removed", "Cart update", JOptionPane.INFORMATION_MESSAGE);
-                break;
-            }
-        }
-
-        if (!discFound) {
-            JOptionPane.showMessageDialog(null, "Disc not found in the cart!", "Cart update", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-
-
-        for (int i = indexToRemove; i < itemCount - 1; i++) {
-            itemsInStore[i] = itemsInStore[i + 1];
-        }
-        itemsInStore[itemCount - 1] = null; 
-        itemCount--;
-        
-        return true; 
- }
+	public void removeMedia(Media media) {
+		 if(itemsInStore.contains(media)) {
+			 itemsInStore.remove(media);
+		 }
+		 
+		 else {
+			 JOptionPane.showMessageDialog(null, "Media not found in the store!", "Store update", JOptionPane.ERROR_MESSAGE);
+		 }
+	 }
+	 
+	 
+	 public void removeMedia(String title) {
+		 for(Media media : itemsInStore) {
+			 if(media.getTitle()== title) {
+				 removeMedia(media);
+				 break;
+			 }
+		 }
+	 }
     
-    public void print() {
-		 if (itemCount==0) {
-	            System.out.println("The store is empty.");
+	 public void print() {
+		 if (itemsInStore.size()==0) {
+	            System.out.println("The cart is empty.");
 	        }
 		 else {
-			 System.out.println("**************************************************STORE**************************************************");
-			 for (int n=0;n < itemCount; n++) {
-				 System.out.printf("%-2d. DVD - %-30s - %-20s - %-20s - %-5d : %.2f$ \n",n+1, itemsInStore[n].getTitle(), itemsInStore[n].getCategory(), itemsInStore[n].getDirector(), itemsInStore[n].getLength(), itemsInStore[n].getCost());		 
+			 System.out.println("*******************************************STORE*******************************************");
+			 System.out.println("Ordered items:");
+			 for (Media media : itemsInStore) {
+				if (media instanceof Book) {
+					System.out.printf("%2d. BOOK - %-40s - %-20s: %.2f$ \n",media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				} 
+				else if (media instanceof CompactDisc) {
+					System.out.printf("%2d. CD   - %-40s - %-20s: %.2f$ \n",media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				} 
+				else if (media instanceof DigitalVideoDisc) {
+					System.out.printf("%2d. DVD  - %-40s - %-20s: %.2f$ \n",media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				}						 
 			 }
-			 System.out.println("*********************************************************************************************************\n");
+			 System.out.println("*******************************************************************************************\n");
 		 }
 	 }
 }
