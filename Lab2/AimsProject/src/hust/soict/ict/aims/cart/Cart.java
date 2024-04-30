@@ -18,6 +18,9 @@ public class Cart {
 		if (itemsOrdered.size() >= MAX_NUMBERS_ORDERED) {
 			 JOptionPane.showMessageDialog(null, "The cart is full!", "Cart update", JOptionPane.ERROR_MESSAGE);
 		}
+		else if(itemsOrdered.contains(media)) {
+			JOptionPane.showMessageDialog(null, "The media is exist", "Cart update", JOptionPane.ERROR_MESSAGE);
+		}
 		else {
 			itemsOrdered.add(media);
 			//JOptionPane.showMessageDialog(null, "The media has been added", "Cart update", JOptionPane.INFORMATION_MESSAGE);
@@ -38,14 +41,14 @@ public class Cart {
 	}
 	
 	
-	 public void removeMedia(Media media) {
-		 if(itemsOrdered.contains(media)) {
-			 itemsOrdered.remove(media);
+	 public void removeMedia(Media mediaToRemove) {
+		 for(Media media : itemsOrdered) {
+			 if(media.equals(mediaToRemove)) {
+				 itemsOrdered.remove(media);
+				 break;
+			 }
 		 }
 		 
-		 else {
-			 JOptionPane.showMessageDialog(null, "media not found in the cart!", "Cart update", JOptionPane.ERROR_MESSAGE);
-		 }
 	 }
 	 
 	 

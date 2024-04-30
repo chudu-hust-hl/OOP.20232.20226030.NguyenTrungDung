@@ -30,5 +30,14 @@ public class Track {
 	    System.out.println("Playing track: " + this.getTitle());
 	    System.out.println("Track length: " + this.getLength());
 	}
+	
+	public boolean equals(Track track) {
+		if(this.getTitle().equals(track.getTitle()) && this.getLength()==track.getLength()) {
+			return true;
+		}
+		else {    	
+			return false;			
+		}
+    }
 
 }
