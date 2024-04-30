@@ -11,7 +11,7 @@ import hust.soict.ict.aims.media.Media;
 
 public class Cart {
 	public static final int MAX_NUMBERS_ORDERED = 20;
-	private ArrayList<Media> itemsOrdered = new ArrayList<>();
+	public ArrayList<Media> itemsOrdered = new ArrayList<>();
 	
 	
 	public void addMedia(Media media) {

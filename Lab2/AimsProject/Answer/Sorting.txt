@@ -1,0 +1,11 @@
+1. What class should implement the Comparable interface?
+- The class whose instances need to be compared should implement the Comparable interface.
+
+2. In those classes, how should you implement the compareTo() method to reflect the ordering that we want?
+- In the compareTo() method, you should define the logic to compare instances based on the desired ordering. For example, if you want to order instances by title then cost, you would compare titles first. If titles are equal, you would then compare costs.
+
+3. Can we have two ordering rules of the item (by title then cost and by cost then title) if we use this Comparable interface approach?
+- No, the compareTo() method can only define one natural ordering for instances of a class. However, you can achieve multiple ordering rules by creating multiple Comparator implementations.
+
+4. Suppose the DVDs have a different ordering rule from the other media types, that is by title, then decreasing length, then cost. How would you modify your code to allow this?
+- You would modify the compareTo() method in the DVD class to reflect the desired ordering rule. You can then use this implementation of compareTo() specifically for instances of the DVD class, while using a different implementation for other media types.
