@@ -1,5 +1,7 @@
 package hust.soict.ict.aims.media;
 
+import java.util.Comparator;
+
 public abstract class Media {
     private static int nbMedia = 0;
     protected int id;
@@ -18,6 +20,12 @@ public abstract class Media {
         this.cost = cost;
     }
 
+    
+    public static final  Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
+    
+    public static final  Comparator<Media> COMPARE_BY_COST_TITLE = new MediaComparatorByCostTitle();
+    
+    
     // Getters and setters for title, category, and cost
     public String getTitle() {
         return title;

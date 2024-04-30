@@ -1,11 +1,13 @@
 package hust.soict.ict.test.cart;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import hust.soict.ict.aims.cart.Cart;
 import hust.soict.ict.aims.media.Book;
 import hust.soict.ict.aims.media.CompactDisc;
 import hust.soict.ict.aims.media.DigitalVideoDisc;
+import hust.soict.ict.aims.media.Media;
 import hust.soict.ict.aims.media.Track;
 
 public class CartTest {
@@ -89,6 +91,7 @@ public class CartTest {
         cart.addMedia(cd4);
         cart.addMedia(cd5);
 
-        cart.searchByType("Book");
+        Collections.sort(cart.itemsOrdered, Media.COMPARE_BY_COST_TITLE);
+        cart.print();
     }
 }

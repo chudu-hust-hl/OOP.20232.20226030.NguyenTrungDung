@@ -28,6 +28,7 @@ public class DigitalVideoDisc extends Disc {
         System.out.println("Playing DVD: " + this.getTitle());
         System.out.println("DVD length: " + this.getLength());
     }
+    
 
     // Getter for id
     public int getId() {
