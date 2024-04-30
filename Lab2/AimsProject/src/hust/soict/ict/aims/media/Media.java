@@ -47,4 +47,14 @@ public abstract class Media {
     public int getId() {
         return id;
     }
+    
+    public boolean equals(Media media) {
+		if(this.getTitle().equals(media.getTitle())) {
+			return true;
+		}
+		else {    	
+			return false;			
+		}
+    }
+    
 }

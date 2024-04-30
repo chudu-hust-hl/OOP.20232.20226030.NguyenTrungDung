@@ -2,7 +2,6 @@ package hust.soict.ict.aims.media;
 
 public class DigitalVideoDisc extends Disc {
     private static int nbDigitalVideoDiscs = 0;
-    private int id;
 
     public DigitalVideoDisc(String title) {
         super();
