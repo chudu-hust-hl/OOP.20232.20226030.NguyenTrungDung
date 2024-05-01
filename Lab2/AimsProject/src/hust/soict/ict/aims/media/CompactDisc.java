@@ -19,7 +19,15 @@ public class CompactDisc extends Disc {
     }
     
 
-    public CompactDisc(String title, String category, String director, ArrayList<Track> tracks, int length, float cost, String artist) {
+    public ArrayList<Track> getTracks() {
+		return tracks;
+	}
+
+	public void setTracks(ArrayList<Track> tracks) {
+		this.tracks = tracks;
+	}
+
+	public CompactDisc(String title, String category, String director, ArrayList<Track> tracks, int length, float cost, String artist) {
         super(title, category, director, length, cost);
         this.artist = artist;
         this.tracks = tracks;

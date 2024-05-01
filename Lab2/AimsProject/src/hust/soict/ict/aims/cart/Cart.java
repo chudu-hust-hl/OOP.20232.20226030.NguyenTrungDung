@@ -72,6 +72,10 @@ public class Cart {
 	        return total;
 	    }
 	 
+	 public void clean() {
+		 itemsOrdered.clear();
+	 }
+	 
 	 public void print() {
 		 if (itemsOrdered.size()==0) {
 	            System.out.println("The cart is empty.");
@@ -237,6 +241,25 @@ public class Cart {
 			 System.out.println("******************************************************************************************\n");
 		 }
 	}
+	
+	public void searchById(int id) {
+        for (Media media : itemsOrdered) {
+            if (media.getId() == id) {
+            	System.out.println("*******************************************CART*******************************************");
+            	System.out.println("Matched items:");
+            	if (media instanceof Book) {
+					System.out.printf("%2d. BOOK - %-30s - %-20s: %.2f$ \n",media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				} 
+				else if (media instanceof CompactDisc) {
+					System.out.printf("%2d. CD   - %-30s - %-20s: %.2f$ \n",media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				} 
+				else if (media instanceof DigitalVideoDisc) {
+					System.out.printf("%2d. DVD  - %-30s - %-20s: %.2f$ \n",media.getId(), media.getTitle(), media.getCategory(), media.getCost());
+				}
+            	System.out.println("******************************************************************************************\n");
+            }
+        }
+    }
 	
 	public void searchByType(String type) {
 		switch(type) {
