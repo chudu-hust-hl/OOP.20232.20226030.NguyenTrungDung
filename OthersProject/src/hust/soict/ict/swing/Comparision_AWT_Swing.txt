@@ -1,0 +1,14 @@
+Compare the top-level containers in Swing and AWT:
+- AWT: The top-level container in AWT is Frame. It represents a window with a title and a border.
+- Swing: The top-level container in Swing is JFrame. JFrame provides a richer set of features compared to Frame, more flexible layout management, and better event handling.
+
+Comparison of Component Class Names in AWT and Swing:
+Swing have the letter 'J' before the component class name
+
+Comparison of Event Handling in Swing and AWT:
+Both Swing and AWT use the same basic event-handling mechanism (delegation event model), Swing provides a richer set of events and listener interfaces, allowing for more complex and customized event handling. Additionally, Swing components are more flexible and support more event types, enhancing the overall event-driven programming experience.
+
+
+
+
+
