@@ -1,6 +1,8 @@
 package hust.soict.ict.aims.media;
 
-public class DigitalVideoDisc extends Disc {
+import hust.soict.ict.aims.cart.Playable;
+
+public class DigitalVideoDisc extends Disc implements Playable {
     private static int nbDigitalVideoDiscs = 0;
 
     public DigitalVideoDisc(String title) {

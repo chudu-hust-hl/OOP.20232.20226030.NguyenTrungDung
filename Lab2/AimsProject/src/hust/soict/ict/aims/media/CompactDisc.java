@@ -4,7 +4,9 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-public class CompactDisc extends Disc {
+import hust.soict.ict.aims.cart.Playable;
+
+public class CompactDisc extends Disc implements Playable {
     private String artist;
     public ArrayList<Track> tracks;
 
